@@ -8,7 +8,32 @@
 	<body>
 		<script>
 			function computerPlay() {
-				
+				let computerChoice = Math.random() * (4 - 1) + 1;
+				computerChoice = Math.floor(computerChoice);
+				return (computerChoice == 1) ? "Rock"
+				:	(computerChoice == 2) ? "Paper"
+				:	"Scissors";
+			}
+
+			function playerChoosing() {
+				playerChoice = prompt("Rock, paper or scissors?");
+				playerChoiceCapitalized = playerChoice[0].toUpperCase();
+				playerChoiceCapitalized += playerChoice.slice(1).toLowerCase();
+				if (playerChoiceCapitalized == "Rock" ||
+					playerChoiceCapitalized == "Paper" ||
+					playerChoiceCapitalized == "Scissors") {
+						alert("Fine Choice")
+					} else {
+						alert("That choice is not valid. Try again");
+						playerChoosing()
+			}
+
+			function playRound(playerSelection, computerSelection) {
+				if computerSelection == playerSelection {
+					return ("It's a draw, both of you picked " + computerSelection)
+				} else if (computerSelection == ""){
+
+				}
 			}
 		</script>
 	</body>
