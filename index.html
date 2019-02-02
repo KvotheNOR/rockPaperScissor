@@ -22,18 +22,73 @@
 				if (playerChoiceCapitalized == "Rock" ||
 					playerChoiceCapitalized == "Paper" ||
 					playerChoiceCapitalized == "Scissors") {
-						alert("Fine Choice")
-					} else {
-						alert("That choice is not valid. Try again");
-						playerChoosing()
+					return (playerChoiceCapitalized)
+				} else {
+					alert("That choice is not valid. Try again");
+					return playerChoosing()
+				}
+			}
+			function computerWins(computerSelection, playerSelection) {
+				return ("Computer wins! " + computerSelection + " beats " + playerSelection)
 			}
 
-			function playRound(playerSelection, computerSelection) {
-				if computerSelection == playerSelection {
-					return ("It's a draw, both of you picked " + computerSelection)
-				} else if (computerSelection == ""){
+			function playerWins(computerSelection, playerSelection) {
+				return ("Player wins! " + playerSelection + " beats " + computerSelection);
+			}
 
+
+
+			function playRound(computerSelection, playerSelection) {
+				if (computerSelection == playerSelection) {
+					return ("It's a draw, both of you picked " + computerSelection)
+				} else if (computerSelection == "Rock") {
+					switch (playerSelection) {
+						case "Paper":
+							return playerWins(computerSelection, playerSelection)
+						case "Scissors":
+							return computerWins(computerSelection, playerSelection);
+						default:
+							return "OOOPS ERROR";
+					}
+				} else if (computerSelection == "Paper") {
+					switch (playerSelection) {
+						case "Rock":
+							return computerWins(computerSelection, playerSelection);
+						case "Scissors":
+							return playerWins(computerSelection, playerSelection);
+					}
+				} else {
+					switch (playerSelection) {
+						case "Rock":
+							return playerWins(computerSelection, playerSelection);
+						case "Paper":
+							return computerWins(computerSelection, playerSelection);
+					}
 				}
+			}
+
+			function game() {
+				alert("Welcome to Rock, Paper, Scissors.");
+				let computerScore = 0, playerScore = 0, winner;
+				for (i = 0; i < 5; i++) {
+					let playerSelection = playerChoosing();
+					let computerSelection = computerPlay();
+					winner = playRound(computerSelection, playerSelection);
+					console.log(winner)
+					switch (winner[0]) {
+						case "C":
+							computerScore++;
+						case "P":
+							playerScore++;
+					}
+				}
+				if (computerScore > playerScore) {
+					console.log("Computer wins, " + computerScore + " to " + playerScore)
+				} else if (computerScore < playerScore) {
+					console.log("Player wins, " + playerScore + " to " + computerScore)
+				} else {
+					console.log("Its a draw, " + playerScore + " to " + computerScore)
+				}	
 			}
 		</script>
 	</body>
